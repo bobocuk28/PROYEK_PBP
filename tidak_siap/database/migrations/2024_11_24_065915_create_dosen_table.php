@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dosen', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable(); // Relasi ke tabel users
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nip')->primary();
             $table->enum('role', ['pembimbing_akademik', 'ketua_prodi', 'dekan']);
             $table->unsignedBigInteger('id_fakultas');

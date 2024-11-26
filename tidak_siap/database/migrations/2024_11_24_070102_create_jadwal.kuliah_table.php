@@ -17,7 +17,8 @@ return new class extends Migration
             $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']);
             $table->time('jam_mulai');
             $table->time('jam_selesai');
-            $table->string('ruang', 50);
+            $table->unsignedBigInteger('id_ruang'); // Ubah dari 'ruang' ke 'id_ruang'
+            $table->foreign('id_ruang')->references('id_ruang')->on('ruangan')->onDelete('cascade'); // Tambahkan foreign key
             $table->integer('kapasitas');
             $table->foreign('kode_mk')->references('kode_mk')->on('mata_kuliah');
             $table->timestamps();
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('jadwal_kuliah');
     }
 };

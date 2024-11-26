@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable(); // Relasi ke tabel users
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nim', 15)->primary();
             $table->string('nama', 100);
             $table->enum('jenis_kelamin', ['L', 'P']);
@@ -25,6 +27,8 @@ return new class extends Migration
             $table->enum('status', ['aktif', 'cuti', 'dropout', 'lulus'])->default('aktif');
             $table->string('wali_akademik_id');
             $table->foreign('wali_akademik_id')->references('nip')->on('dosen')->onDelete('cascade');
+            $table->unsignedBigInteger('id_kelas')->nullable(); // Relasi ke tabel kelas
+            $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('semester');
             $table->enum('status_pengesahan', ['disetujui', 'belum_disetujui'])->default('belum_disetujui');
             $table->foreign('nim')->references('nim')->on('mahasiswa');
+            $table->unsignedBigInteger('id_kelas')->nullable(); // Relasi ke tabel kelas
+            $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('set null');
             $table->timestamps();
         });
     }

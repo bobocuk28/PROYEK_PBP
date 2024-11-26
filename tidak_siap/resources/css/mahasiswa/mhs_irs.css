@@ -1,0 +1,185 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+.header {
+    background-color: #D3D3D3;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .title {
+    font-size: 18px;
+    font-weight: bold;
+}
+.header .user-info {
+    display: flex;
+    align-items: center;
+}
+.header .user-info i {
+    margin-right: 5px;
+}
+.header .user-info span {
+    margin-right: 10px;
+}
+
+.breadcrumb-container {
+    padding: 0 20px;
+    background-color: #f5f5f5;
+}
+
+.breadcrumb {
+    margin: 0;
+    padding: 10px 0;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: black;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb span {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: black;
+}
+
+.menu-container {
+    padding: 0 30px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    display: inline-block;
+}
+
+.menu .active {
+    background-color: #b0b0b0;
+    color: white;
+}
+
+.menu a:hover {
+    background-color: #b0b0b0;
+    color: white;
+}
+
+.main-content {
+    max-width: 1300px; 
+    margin: 20px auto; 
+    padding: 20px;
+    background-color: #D3D3D3;
+    border-radius: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column; 
+}
+
+.semester {
+    cursor: pointer;
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+thead {
+    background-color: #D3D3D3;
+}
+
+h5 {
+    margin-bottom: 20px; 
+}
+
+h6 {
+    margin: 0; 
+    font-weight: bold; 
+}
+
+th, td {
+    text-align: center; 
+}
+
+.tombol {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 115px;
+    margin-top: 20px; /* Menambah jarak antara Fungsi dan Tombol */
+    display: block;
+}
+
+@media (max-width: 1300px) {
+    .content {
+        gap: 20px;
+    }
+    .main-content {
+        padding: 15px;
+        margin: 20px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .main-content {
+        padding: 15px;
+        margin: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu a {
+        padding: 8px 15px;
+        font-size: 12px;
+    }
+    .main-content {
+        padding: 10px;
+        margin: 10px;
+    }
+    .content {
+        gap: 15px;
+    }
+}

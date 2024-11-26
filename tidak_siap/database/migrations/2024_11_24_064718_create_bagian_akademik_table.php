@@ -12,6 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akademik', function (Blueprint $table) {
+            $table->unsignedBigInteger('user_id')->nullable(); // Relasi ke tabel users
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('nip')->primary();
             $table->string('nama', 100);
             $table->string('email', 100)->unique();
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('bagian_akademik');
     }
 };
