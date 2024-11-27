@@ -13,21 +13,12 @@ class IrsSeeder extends Seeder
         DB::table('irs')->insert([
             [
                 'id_irs' => 1,
-                'nim' => '200001',
+                'nim' => '24060122100000',
                 'tahun_akademik' => '2023/2024',
                 'semester' => 1,
                 'status_pengesahan' => 'disetujui',
                 'id_kelas' => 1,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ],
-            [
-                'id_irs' => 2,
-                'nim' => '200002',
-                'tahun_akademik' => '2023/2024',
-                'semester' => 1,
-                'status_pengesahan' => 'belum_disetujui',
-                'id_kelas' => 2,
+                'nilai' => 'A',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

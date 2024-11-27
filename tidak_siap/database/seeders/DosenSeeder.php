@@ -12,7 +12,7 @@ class DosenSeeder extends Seeder
     {
         DB::table('dosen')->insert([
             [
-                'user_id' => null,
+                'user_id' => 2,
                 'nip' => '123456',
                 'role' => 'dekan',
                 'id_fakultas' => 1,

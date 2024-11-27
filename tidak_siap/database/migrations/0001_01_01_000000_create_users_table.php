@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
+            $table->string('username', 100);
             $table->string('email', 100)->unique();
             $table->string('password');
-            $table->enum('role', ['mahasiswa', 'dosen', 'kaprodi', 'dekan', 'akademik']);
+            $table->enum('role', ['mahasiswa', 'dosen', 'akademik']);
             $table->unsignedBigInteger('related_id')->nullable(); // Foreign key untuk mahasiswa/dosen
             $table->timestamps();
         });

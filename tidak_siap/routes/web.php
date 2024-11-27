@@ -1,15 +1,11 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', function () {
-    return view('login');
-});
+// Rute untuk halaman login
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 
-Route::get('/reset_password', function () {
-    return view('reset_password');
-});
+// Rute untuk memproses login
+Route::post('login', [LoginController::class, 'login']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});

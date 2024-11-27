@@ -22,7 +22,7 @@ class MahasiswaSeeder extends Seeder
                 'id_prodi' => 1,
                 'angkatan' => 2022,
                 'status' => 'aktif',
-                'wali_akademik_id' => '12345678910',
+                'wali_akademik_id' => '123456',
                 'id_kelas' => null,
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('nim')->references('nim')->on('mahasiswa');
             $table->unsignedBigInteger('id_kelas')->nullable(); // Relasi ke tabel kelas
             $table->foreign('id_kelas')->references('id_kelas')->on('kelas')->onDelete('set null');
+            $table->enum('nilai', ['A', 'B', 'C', 'D', 'E']);
             $table->timestamps();
         });
     }

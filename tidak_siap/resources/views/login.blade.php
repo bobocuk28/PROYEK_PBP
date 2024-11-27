@@ -11,14 +11,15 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Contoh data pengguna untuk keperluan login (seharusnya dicek di database)
+    // Password yang disimpan sebaiknya menggunakan password_hash() dan password_verify()
     $userData = [
         'email' => 'user@example.com',
-        'password' => 'password123',
+        'password' => '$2y$10$2MTo7aOKRt35e9uRHNw9NeOkA9aC2yaHgk58EoV7Su7ReFaO2eJja', // contoh hash password (password123)
         'username' => 'User1'
     ];
 
     // Verifikasi email dan password
-    if ($email === $userData['email'] && $password === $userData['password']) {
+    if ($email === $userData['email'] && password_verify($password, $userData['password'])) {
         // Simpan informasi pengguna ke session
         $_SESSION['user'] = $userData;
         
@@ -83,8 +84,8 @@ if (isset($_POST['login'])) {
 
         <input type="submit" name="login" value="Login">
     </form>
-    <p class="message"><?= $loginMessage ?></p>
-    <p><a href="reset_password">Lupa Password</a></p>
+    <p class="message"><?= htmlspecialchars($loginMessage) ?></p>
+    <p><a href="reset_password.php">Lupa Password</a></p> <!-- Pastikan halaman reset_password.php ada -->
 </div>
 
 </body>
