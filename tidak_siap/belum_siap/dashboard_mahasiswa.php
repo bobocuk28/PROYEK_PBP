@@ -14,8 +14,9 @@ $result = $conn->query($sql);
 $user_data = $result->fetch_assoc();
 
 // Ambil data dosen wali berdasarkan dosen_wali (NIP) yang ada pada data mahasiswa
-$dosen_wali_nip = $user_data['dosen_wali'];
-$sql_dosen_wali = "SELECT nama FROM dosen WHERE nip = '$dosen_wali_nip'";
+// Ambil data dosen wali berdasarkan wali_akademik_id yang ada pada data mahasiswa
+$wali_akademik_id = $user_data['wali_akademik_id']; // Asumsi kolom wali_akademik_id ada di tabel mahasiswa
+$sql_dosen_wali = "SELECT nama FROM dosen WHERE nip = '$wali_akademik_id'";
 $result_dosen_wali = $conn->query($sql_dosen_wali);
 $dosen_wali = $result_dosen_wali->fetch_assoc();
 
@@ -52,13 +53,12 @@ $is_pending_status = $user_data['status'] === 'proses penentuan status';
                             <li class="list-group-item"><strong>Email:</strong> <?php echo $user_data['email']; ?></li>
                             <li class="list-group-item"><strong>NIM:</strong> <?php echo $user_data['nim']; ?></li>
                             <li class="list-group-item"><strong>Alamat:</strong> <?php echo $user_data['alamat']; ?></li>
-                            <li class="list-group-item"><strong>No Telpon:</strong> <?php echo $user_data['no_telpon']; ?></li>
+                            <li class="list-group-item"><strong>No Telpon:</strong> <?php echo $user_data['no_telepon']; ?></li>
                             <li class="list-group-item"><strong>Status:</strong> <?php echo $user_data['status']; ?></li>
-                            <li class="list-group-item"><strong>Total SKS:</strong> <?php echo $user_data['total_sks']; ?></li>
+                            <li class="list-group-item"><strong>Total SKS:</strong> <?php echo $user_data['SkSk']; ?></li>
                             <li class="list-group-item"><strong>IPK:</strong> <?php echo $user_data['ipk']; ?></li>
-                            <li class="list-group-item"><strong>IP Semester:</strong> <?php echo $user_data['ip_semester']; ?></li>
                             <li class="list-group-item"><strong>Semester:</strong> <?php echo $user_data['semester']; ?></li>
-                            <li class="list-group-item"><strong>Dosen Wali:</strong> <?php echo $dosen_wali['nama']; ?></li>
+                            <li class="list-group-item"><strong>Dosen Wali:</strong> <?php echo isset($dosen_wali['nama']) ? $dosen_wali['nama'] : 'Tidak tersedia'; ?></li>
                         </ul>
                     </div>
                 </div>

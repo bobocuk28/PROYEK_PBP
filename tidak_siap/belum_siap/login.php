@@ -30,7 +30,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_type'] = 'dosen';
         $_SESSION['user_email'] = $email;
         $_SESSION['user_nip'] = $user_data['nip']; // Menyimpan NIP sebagai ID
+        $_SESSION['role'] = $user_data['role']; // Menyimpan role dosen (misal ketua_prodi, pembimbing_akademik)
+        $_SESSION['user_prodi'] = $user_data['id_prodi']; // Menyimpan id_prodi dari dosen
         header("Location: dashboard_dosen.php");
+        exit();
+    }
+
+    // Cek di tabel akademik
+    $sql_akademik = "SELECT * FROM akademik WHERE email = '$email' AND password = '$password'";
+    $result_akademik = $conn->query($sql_akademik);
+
+    if ($result_akademik->num_rows > 0) {
+        // Data akademik ditemukan, set session dan arahkan ke dashboard akademik
+        $user_data = $result_akademik->fetch_assoc();
+        $_SESSION['user_type'] = 'akademik';
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_nip'] = $user_data['nip']; // Menyimpan NIP akademik sebagai ID
+        header("Location: dashboard_akademik.php");
         exit();
     }
 

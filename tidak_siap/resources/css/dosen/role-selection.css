@@ -1,0 +1,61 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Styling untuk halaman pemilihan role */
+.role-selection {
+    text-align: center;
+}
+
+.role-selection h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.role-options {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.role-option {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.role-option:hover {
+    transform: scale(1.05);
+}
+
+.role-icon img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+.role-name h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Styling untuk tombol role */
+.role-option:active {
+    transform: scale(0.95);
+}

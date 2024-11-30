@@ -12,10 +12,17 @@ if (!isset($_SESSION['user_email']) || $_SESSION['user_type'] != 'dosen') {
 $email = $_SESSION['user_email'];
 $sql = "SELECT * FROM dosen WHERE email = '$email'";
 $result = $conn->query($sql);
-$user_data = $result->fetch_assoc();
+
+if ($result->num_rows > 0) {
+    $user_data = $result->fetch_assoc();
+} else {
+    // Jika data tidak ditemukan, arahkan ke halaman login atau tampilkan error
+    echo "Data dosen tidak ditemukan.";
+    exit();
+}
 
 // Ambil status jabatan dari data dosen
-$status_jabatan = $user_data['status_jabatan']; // status_jabatan bisa berupa dosen, dosen wali, ketua program studi, dekan
+$status_jabatan = $user_data['role']; // role digunakan untuk jabatan dosen
 ?>
 
 <!DOCTYPE html>
@@ -46,9 +53,8 @@ $status_jabatan = $user_data['status_jabatan']; // status_jabatan bisa berupa do
                         <ul class="list-group">
                             <li class="list-group-item"><strong>Email:</strong> <?php echo $user_data['email']; ?></li>
                             <li class="list-group-item"><strong>NIP:</strong> <?php echo $user_data['nip']; ?></li>
-                            <li class="list-group-item"><strong>Alamat:</strong> <?php echo $user_data['alamat']; ?></li>
-                            <li class="list-group-item"><strong>No Telpon:</strong> <?php echo $user_data['no_telpon']; ?></li>
-                            <li class="list-group-item"><strong>Jabatan:</strong> <?php echo $user_data['status_jabatan']; ?></li>
+                            <!-- Menghapus kolom alamat dan no_telpon karena tidak ada di tabel dosen -->
+                            <li class="list-group-item"><strong>Jabatan:</strong> <?php echo ucfirst(str_replace('_', ' ', $status_jabatan)); ?></li> <!-- Mengubah role menjadi format yang lebih manusiawi -->
                         </ul>
                     </div>
                 </div>
@@ -57,18 +63,18 @@ $status_jabatan = $user_data['status_jabatan']; // status_jabatan bisa berupa do
 
         <!-- Tombol Berdasarkan Jabatan -->
         <div class="mt-4 text-center">
-            <?php if ($status_jabatan == 'ketua program studi') : ?>
-                <a href="management_mata_kuliah.php" class="btn btn-primary">Management Mata Kuliah</a>
-            <?php elseif ($status_jabatan == 'dosen' || $status_jabatan == 'dosen wali') : ?>
-                <a href="jadwal_mata_kuliah_dosen.php" class="btn btn-primary">Jadwal Mata Kuliah Dosen</a>
+            <?php if ($status_jabatan == 'ketua_prodi') : ?>
+                <a href="input_mata_kuliah.php" class="btn btn-primary">Management Mata Kuliah</a>
+                <a href="manajemen_jadwal.php" class="btn btn-warning">Management jadwal</a>
             <?php endif; ?>
             
-            <?php if ($status_jabatan == 'dosen wali') : ?>
+            <?php if ($status_jabatan == 'pembimbing_akademik') : ?>
                 <a href="mahasiswa_dosen_wali.php" class="btn btn-secondary">Mahasiswa Dosen Wali</a>
             <?php endif; ?>
             
             <?php if ($status_jabatan == 'dekan') : ?>
                 <a href="persetujuan_ruangan.php" class="btn btn-success">Persetujuan Ruangan</a>
+                <a href="persetujuan_jadwal.php" class="btn btn-success">Persetujuan jadwal</a>
             <?php endif; ?>
         </div>
     </div>
